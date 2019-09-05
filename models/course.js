@@ -55,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
 
   // creates association with User model
   Course.associate = function(models) {
-    // associations can be defined here
+    // associations defined here
     models.Course.belongsTo(models.User, {
       foreignKey: {
         fieldName: "userId",

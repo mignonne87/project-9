@@ -49,7 +49,7 @@ const hashPassword = async password => {
 };
 
 /* 
-  Handles the get requests for / route and responds with the current authenticated user
+  Handle the get requests for route and responds with the current authenticated user
  */
 router.get(
   "/",
@@ -65,8 +65,8 @@ router.get(
 );
 
 /* 
-  Handles posting of new user, with validation. If user has been successfully created 
-  responds with no data and sets head Location to /, else responds with appropriate error
+  Handle posting of new user, with validation. If user successfully created 
+  responds with no data and set head Location.
  */
 router.post(
   "/",

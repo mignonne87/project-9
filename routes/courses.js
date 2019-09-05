@@ -9,7 +9,7 @@ const {
 const { Course } = require("../models/index.js");
 const { check, validationResult } = require("express-validator");
 
-// Initialize array with course validations
+// Initialize with course validations
 const courseValidations = [
   check("title")
     .exists({ checkNull: true, checkFalsy: true })
@@ -19,7 +19,7 @@ const courseValidations = [
     .withMessage("description is required")
 ];
 
-// Handles request to / route and responds with all courses info
+// Handle request to route with all course info
 router.get(
   "/",
   asyncErrorHandler(async (req, res) => {
@@ -29,7 +29,7 @@ router.get(
   })
 );
 
-// Handles get requests to /:courseId route and responds with the course details
+// Handle get requests to courseId route and responds with the course details
 router.get(
   "/:courseId",
   asyncErrorHandler(async (req, res, next) => {
