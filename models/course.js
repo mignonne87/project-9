@@ -1,5 +1,5 @@
 "use strict";
-// exports the Course model
+// exports Course model
 module.exports = (sequelize, DataTypes) => {
   // import User model
   const User = sequelize.import("./user");
@@ -63,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
 
-    // method that returns all Courses info with some attributes excluded
+    // returns all Courses exclude some attributes
     Course.getCoursesInfo = async function() {
       return await this.findAll({
         attributes: { exclude: ["createdAt", "updatedAt"] },
@@ -76,7 +76,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     };
 
-    // method that returns a sigle course info based on course ids
+    // returns a single course based on course ids
     Course.getCourseInfoById = async function(courseId) {
       return await this.findOne({
         attributes: { exclude: ["createdAt", "updatedAt"] },
@@ -93,7 +93,7 @@ module.exports = (sequelize, DataTypes) => {
     };
   };
 
-  // creates a new course if it does not exist and returns an object containing it and true if created
+  // creates a new course if it does not exist and returns an object
   Course.createCourse = async function(
     title,
     description,
@@ -118,7 +118,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
 
-  // updates a course by user id and course id. Returns true if updated and false if not
+  // updates course by user id and course id.
   Course.updateCourseById = async function(
     courseId,
     title,
@@ -156,7 +156,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
 
-  // deletes  a course by user id and course id. Returns true if deleted and false if not
+  // deletes course by user id and course id.
   Course.deleteCourseById = async function(courseId, userId) {
     try {
       const course = await this.findOne({ where: { id: courseId, userId } });

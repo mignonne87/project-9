@@ -1,6 +1,4 @@
 // handles requests to /api/users route
-
-// load modules
 const express = require("express");
 const router = express.Router();
 const bcryptjs = require("bcryptjs");
@@ -8,7 +6,7 @@ const { asyncErrorHandler, authenticateUser } = require("../utilityFunctions");
 const { User } = require("../models/index.js");
 const { check, validationResult } = require("express-validator");
 
-// initialise userValidation array with express validator
+// initialize userValidation with express validator
 const userValidations = [
   check("firstName")
     .exists({ checkNull: true, checkFalsy: true })
@@ -23,7 +21,7 @@ const userValidations = [
     .withMessage("emailAddress is not valid")
     .custom(value => {
       return User.userEmailExists(value).then(exists => {
-        // if email already exist rejects the promise
+        // if email already exist reject
         if (exists) {
           return Promise.reject("User with Email already exists");
         }
@@ -35,8 +33,7 @@ const userValidations = [
 ];
 
 /*  
-  salts and hashes a password string passed in and returns the hash.
-  from https://stackoverflow.com/questions/48799894/trying-to-hash-a-password-using-bcrypt-inside-an-async-function
+ https://stackoverflow.com/questions/48799894/trying-to-hash-a-password-using-bcrypt-inside-an-async-function
  */
 const hashPassword = async password => {
   const saltRounds = 10;

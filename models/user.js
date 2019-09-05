@@ -73,10 +73,9 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
 
-  // creates association with Course model
+  // Define association with Course model
   User.associate = function(models) {
-    // associations can be defined here
-    models.User.hasMany(models.Course, {
+      models.User.hasMany(models.Course, {
       foreignKey: {
         fieldName: "userId",
         allowNull: false

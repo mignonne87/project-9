@@ -1,11 +1,10 @@
 // utility functions
 
-// load modules
 const auth = require("basic-auth");
 const bcryptjs = require("bcryptjs");
 const { User } = require("./models/index.js");
 
-// Higher order functions, which handles errors for async route functions
+// functions handles errors for async route functions
 const asyncErrorHandler = cb => {
   return async (req, res, next) => {
     try {
@@ -36,7 +35,7 @@ const createErrorByStatus = statusCode => {
 };
 
 /*  
-handles the authenticatation of the user and sets the current user in the request 
+handles the user and sets the current user in the request 
 object using basic auth if authenticated else goes to error route
 */
 const authenticateUser = asyncErrorHandler(async (req, res, next) => {
@@ -58,7 +57,7 @@ const authenticateUser = asyncErrorHandler(async (req, res, next) => {
   return accessDenied ? next(createErrorByStatus(401)) : next();
 });
 
-// exports utility fuctions
+// exports utility functions
 module.exports = {
   asyncErrorHandler,
   createErrorByStatus,

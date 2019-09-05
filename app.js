@@ -3,11 +3,14 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const coursesRouter = require("./routes/courses");
 
+// variable to enable global error logging
+const enableGlobalErrorLogging =
+  process.env.ENABLE_GLOBAL_ERROR_LOGGING === "true";
+  
 const app = express();
 
 app.use(logger('dev'));
@@ -26,7 +29,7 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   if (enableGlobalErrorLogging) {
     console.error(`Global error handler: ${JSON.stringify(err.stack)}`);
   }
